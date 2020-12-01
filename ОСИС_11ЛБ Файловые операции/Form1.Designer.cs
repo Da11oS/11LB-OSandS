@@ -31,6 +31,9 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FunctionToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.создатьПапкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FolderButton = new System.Windows.Forms.Button();
             this.WriteUnitButton = new System.Windows.Forms.Button();
             this.UnitReadButton = new System.Windows.Forms.Button();
@@ -45,7 +48,9 @@
             this.PositionTextBox = new System.Windows.Forms.TextBox();
             this.ForFileLabel = new System.Windows.Forms.Label();
             this.PositionLabel = new System.Windows.Forms.Label();
-            this.FunctionToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,9 +77,33 @@
             // 
             // FileToolStripMenuItem1
             // 
+            this.FileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.открытьToolStripMenuItem});
             this.FileToolStripMenuItem1.Name = "FileToolStripMenuItem1";
             this.FileToolStripMenuItem1.Size = new System.Drawing.Size(48, 20);
             this.FileToolStripMenuItem1.Text = "Файл";
+            // 
+            // открытьToolStripMenuItem
+            // 
+            this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.открытьToolStripMenuItem.Text = "Открыть";
+            this.открытьToolStripMenuItem.Click += new System.EventHandler(this.ОткрытьToolStripMenuItem_Click_1);
+            // 
+            // FunctionToolStripMenuItem2
+            // 
+            this.FunctionToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.создатьПапкуToolStripMenuItem});
+            this.FunctionToolStripMenuItem2.Name = "FunctionToolStripMenuItem2";
+            this.FunctionToolStripMenuItem2.Size = new System.Drawing.Size(68, 20);
+            this.FunctionToolStripMenuItem2.Text = "Функции";
+            // 
+            // создатьПапкуToolStripMenuItem
+            // 
+            this.создатьПапкуToolStripMenuItem.Name = "создатьПапкуToolStripMenuItem";
+            this.создатьПапкуToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.создатьПапкуToolStripMenuItem.Text = "Создать папку";
+            this.создатьПапкуToolStripMenuItem.Click += new System.EventHandler(this.СоздатьПапкуToolStripMenuItem_Click_1);
             // 
             // FolderButton
             // 
@@ -88,9 +117,9 @@
             // 
             // WriteUnitButton
             // 
-            this.WriteUnitButton.Location = new System.Drawing.Point(183, 227);
+            this.WriteUnitButton.Location = new System.Drawing.Point(11, 227);
             this.WriteUnitButton.Name = "WriteUnitButton";
-            this.WriteUnitButton.Size = new System.Drawing.Size(141, 23);
+            this.WriteUnitButton.Size = new System.Drawing.Size(166, 23);
             this.WriteUnitButton.TabIndex = 3;
             this.WriteUnitButton.Text = "Запись блока";
             this.WriteUnitButton.UseVisualStyleBackColor = true;
@@ -98,9 +127,9 @@
             // 
             // UnitReadButton
             // 
-            this.UnitReadButton.Location = new System.Drawing.Point(39, 227);
+            this.UnitReadButton.Location = new System.Drawing.Point(183, 227);
             this.UnitReadButton.Name = "UnitReadButton";
-            this.UnitReadButton.Size = new System.Drawing.Size(138, 23);
+            this.UnitReadButton.Size = new System.Drawing.Size(166, 23);
             this.UnitReadButton.TabIndex = 3;
             this.UnitReadButton.Text = "Чтение блока";
             this.UnitReadButton.UseVisualStyleBackColor = true;
@@ -108,9 +137,9 @@
             // 
             // RadLineButton
             // 
-            this.RadLineButton.Location = new System.Drawing.Point(184, 69);
+            this.RadLineButton.Location = new System.Drawing.Point(183, 98);
             this.RadLineButton.Name = "RadLineButton";
-            this.RadLineButton.Size = new System.Drawing.Size(165, 23);
+            this.RadLineButton.Size = new System.Drawing.Size(166, 23);
             this.RadLineButton.TabIndex = 3;
             this.RadLineButton.Text = "Чтение строки";
             this.RadLineButton.UseVisualStyleBackColor = true;
@@ -128,9 +157,9 @@
             // 
             // OpenForReadingButton
             // 
-            this.OpenForReadingButton.Location = new System.Drawing.Point(13, 69);
+            this.OpenForReadingButton.Location = new System.Drawing.Point(183, 69);
             this.OpenForReadingButton.Name = "OpenForReadingButton";
-            this.OpenForReadingButton.Size = new System.Drawing.Size(165, 23);
+            this.OpenForReadingButton.Size = new System.Drawing.Size(166, 23);
             this.OpenForReadingButton.TabIndex = 3;
             this.OpenForReadingButton.Text = "Открыть для чтения";
             this.OpenForReadingButton.UseVisualStyleBackColor = true;
@@ -148,9 +177,9 @@
             // 
             // WriteLineButton
             // 
-            this.WriteLineButton.Location = new System.Drawing.Point(13, 127);
+            this.WriteLineButton.Location = new System.Drawing.Point(11, 98);
             this.WriteLineButton.Name = "WriteLineButton";
-            this.WriteLineButton.Size = new System.Drawing.Size(164, 23);
+            this.WriteLineButton.Size = new System.Drawing.Size(166, 23);
             this.WriteLineButton.TabIndex = 3;
             this.WriteLineButton.Text = "Запись строки";
             this.WriteLineButton.UseVisualStyleBackColor = true;
@@ -158,9 +187,9 @@
             // 
             // CloseForWriteButton
             // 
-            this.CloseForWriteButton.Location = new System.Drawing.Point(184, 98);
+            this.CloseForWriteButton.Location = new System.Drawing.Point(11, 127);
             this.CloseForWriteButton.Name = "CloseForWriteButton";
-            this.CloseForWriteButton.Size = new System.Drawing.Size(165, 23);
+            this.CloseForWriteButton.Size = new System.Drawing.Size(166, 23);
             this.CloseForWriteButton.TabIndex = 3;
             this.CloseForWriteButton.Text = "Закрыть для записи";
             this.CloseForWriteButton.UseVisualStyleBackColor = true;
@@ -168,7 +197,7 @@
             // 
             // OpenForWriteButton
             // 
-            this.OpenForWriteButton.Location = new System.Drawing.Point(12, 98);
+            this.OpenForWriteButton.Location = new System.Drawing.Point(11, 69);
             this.OpenForWriteButton.Name = "OpenForWriteButton";
             this.OpenForWriteButton.Size = new System.Drawing.Size(166, 23);
             this.OpenForWriteButton.TabIndex = 3;
@@ -208,11 +237,9 @@
             this.PositionLabel.TabIndex = 5;
             this.PositionLabel.Text = "Позиция";
             // 
-            // FunctionToolStripMenuItem2
+            // openFileDialog1
             // 
-            this.FunctionToolStripMenuItem2.Name = "FunctionToolStripMenuItem2";
-            this.FunctionToolStripMenuItem2.Size = new System.Drawing.Size(68, 20);
-            this.FunctionToolStripMenuItem2.Text = "Функции";
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -265,6 +292,11 @@
         private System.Windows.Forms.TextBox PositionTextBox;
         private System.Windows.Forms.Label ForFileLabel;
         private System.Windows.Forms.Label PositionLabel;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem создатьПапкуToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
     }
 }
 
